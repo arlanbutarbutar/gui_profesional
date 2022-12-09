@@ -33,7 +33,7 @@ $_SESSION['page-url'] = "php-info";
       <div class="az-content-left az-content-left-components">
         <div class="component-item">
           <label>Docs</label>
-          <?php require_once("resources/layout/nav-pengantar.php"); ?>
+          <?php require_once("resources/layout/nav-docs.php"); ?>
         </div><!-- component-item -->
 
       </div><!-- az-content-left -->

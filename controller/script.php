@@ -143,21 +143,20 @@ if (isset($_SESSION['data-user'])) {
     }
   }
   $db_wordpress = mysqli_query($conn, "SELECT * FROM data_base WHERE name='db_wordpress'");
-  $ui = mysqli_query($conn, "SELECT * FROM ui WHERE id_user='$idUser'");
-  if (mysqli_num_rows($ui) == 0) {
+  $ui = mysqli_query($conn, "SELECT * FROM users JOIN ui ON users.id_user=ui.id_user WHERE users.id_user='$idUser'");
+  if (mysqli_num_rows($ui) > 0) {
+    $data = mysqli_fetch_assoc($ui);
+    $progress = $data['progress'];
+    $data_base = $data['data_base'];
+    $framework = $data['framework'];
+    $project = $data['project'];
+    $nav_tools = $data['nav_tools'];
+  } else if (mysqli_num_rows($ui) == 0) {
     $progress = 1;
     $data_base = 1;
     $framework = 1;
     $project = 1;
     $nav_tools = 1;
-  } else if (mysqli_num_rows($ui) > 0) {
-    while ($data = mysqli_fetch_assoc($ui)) {
-      $progress = $data['progress'];
-      $data_base = $data['data_base'];
-      $framework = $data['framework'];
-      $project = $data['project'];
-      $nav_tools = $data['nav_tools'];
-    }
   }
   if (isset($_POST['copy-gui-old'])) {
     if (copy_gui_old($_POST) > 0) {
@@ -172,7 +171,77 @@ if (isset($_SESSION['data-user'])) {
       exit();
     }
   }
-  $view_db=mysqli_query($conn, "SELECT * FROM data_base WHERE id_user='$idUser' ORDER BY name ASC");
+  $view_db = mysqli_query($conn, "SELECT * FROM data_base WHERE id_user='$idUser' ORDER BY name ASC");
+  if (isset($_POST['tidak-aktif-progress'])) {
+    mysqli_query($conn, "UPDATE ui SET progress='2' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Progress Project tidak aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['aktif-progress'])) {
+    mysqli_query($conn, "UPDATE ui SET progress='1' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Progress Project aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['tidak-aktif-database'])) {
+    mysqli_query($conn, "UPDATE ui SET data_base='2' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Databases tidak aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['aktif-database'])) {
+    mysqli_query($conn, "UPDATE ui SET data_base='1' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Databases aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['tidak-aktif-framework'])) {
+    mysqli_query($conn, "UPDATE ui SET framework='2' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Frameworks tidak aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['aktif-framework'])) {
+    mysqli_query($conn, "UPDATE ui SET framework='1' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Frameworks aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['tidak-aktif-project'])) {
+    mysqli_query($conn, "UPDATE ui SET project='2' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Data Table Project tidak aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['aktif-project'])) {
+    mysqli_query($conn, "UPDATE ui SET project='1' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Data Table Project aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['tidak-aktif-nav-tools'])) {
+    mysqli_query($conn, "UPDATE ui SET nav_tools='2' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Nav Tools tidak aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
+  if (isset($_POST['aktif-nav-tools'])) {
+    mysqli_query($conn, "UPDATE ui SET nav_tools='1' WHERE id_user='$idUser'");
+    $_SESSION['message-success'] = "Card Nav Tools aktif.";
+    $_SESSION['time-message'] = time();
+    header("Location: " . $_SESSION['page-url']);
+    exit();
+  }
 }
 if (isset($_SESSION['route'])) {
   $route = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['route']))));

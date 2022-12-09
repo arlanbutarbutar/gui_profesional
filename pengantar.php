@@ -33,7 +33,7 @@ $_SESSION['page-url'] = "pengantar";
       <div class="az-content-left az-content-left-components">
         <div class="component-item">
           <label>Docs</label>
-          <?php require_once("resources/layout/nav-pengantar.php"); ?>
+          <?php require_once("resources/layout/nav-docs.php"); ?>
         </div><!-- component-item -->
 
       </div><!-- az-content-left -->
@@ -46,9 +46,44 @@ $_SESSION['page-url'] = "pengantar";
         <h5>Mulailah dengan GUI, kerangka kerja yang dapat membuat situs dengan mudah dan cepat, dengan disediakan Framework dan halaman awal template Project Native.</h5>
         <h4 class="mt-4">Instalasi</h4>
         <p>Anda bisa klik link dibawah ini untuk mengunduh GUI.</p>
-        <textarea class="form-control border-0 shadow" style="resize: none;" readonly>https://github.com/arlanbutarbutar</textarea>
-        <p>Setelah anda mengunjungi link tersebut, klik tombol hijau untuk mengunduh. Pilih beberapa cara unduhan yang anda bisa gunakan.</p>
-        <img src="resources/img/" alt="">
+        <div class="p-3" style="background-color: #e3e7ed;">
+          <a class="text-primary" style="cursor: pointer;" onclick="window.open('https://github.com/arlanbutarbutar/gui_profesional', 'blank')">https://github.com/arlanbutarbutar/gui_profesional</a>
+        </div>
+        <p class="mt-3">Setelah anda mengunjungi link tersebut, klik tombol <strong>
+            <> Code
+          </strong> untuk mengunduh. Pilih beberapa cara unduhan yang anda bisa gunakan.</p>
+        <img src="resources/img/in1.png" style="width: 75%;" alt="">
+        <h6 class="mt-3 font-weight-bold">Cara pemasangan:</h6>
+        <p>Melakukan pemasangan menggunakan <strong>HTTPS</strong> atau <strong>SSH</strong></p>
+        <div class="p-3" style="background-color: #e3e7ed;">
+          <ol>
+            <li>Salin link berikut jika HTTPS <span class="text-primary">https://github.com/arlanbutarbutar/gui_profesional.git</span>. Jika menggunakan SSH <span class="text-primary">git@github.com:arlanbutarbutar/gui_profesional.git</span> .</li>
+            <li>Apabila sudah menyalin, anda buka <strong>Visual Studio Code</strong> atau aplikasi editor lainnya.</li>
+            <li>Jika sudah, buka folder htdocs. Pastikan anda harus menaruhnya di dalam folder htdocs dan isi dari folder htdocs harus kosong atau tidak ada file apapun di dalamnya agar GUI dapat terbaca dengan benar.</li>
+            <li>Berikut buka terminal dengan cara ketik <strong>Ctrl+Shift+`</strong></li>
+            <li>Setelah terbuka, ketikan <strong>git clone</strong> lalu tempel <strong>HTTPS</strong> atau <strong>SSH</strong> yang sudah disalin. Sebagai contoh:
+              <ol type="a">
+                <li><span class="text-primary">git clone https://github.com/arlanbutarbutar/gui_profesional.git</span></li>
+                <li><span class="text-primary">git clone git@github.com:arlanbutarbutar/gui_profesional.git</span></li>
+              </ol>
+            </li>
+            <li>Jika sudah tekan <strong>enter</strong> dan tunggu hingga proses instalasi selesai.</li>
+          </ol>
+        </div>
+        <p class="mt-3">Jika pemasangan menggunakan <strong>HTTPS</strong> atau <strong>SSH</strong> terlalu sulit bagi anda, bisa dengan mengunduh langsung menggunkaan ZIP.</p>
+        <div class="p-3" style="background-color: #e3e7ed;">
+          <ol>
+            <li>Sebelum mengunduh, pastikan terlebih dahulu isi dari folder htdocs harus kosong atau tidak ada file apapun di dalamnya agar GUI dapat terbaca dengan benar.</li>
+            <li>Jika sudah, anda bisa mulai mengunduh dengan mengklik <strong>Download ZIP</strong> pada tombol <strong>
+                <> Code
+              </strong>.</li>
+            <li>Tunggu hingga selesai, jika sudah terunduh masukan ke folder htdocs lalu extract seperti biasa.</li>
+            <li>Setelah semuanya selesai, maka anda sudah dapat menggunakan GUI.</li>
+          </ol>
+        </div>
+        <h4 class="mt-4">Komunitas</h4>
+        <p class="mt-3">Ikuti terus perkembangan GUI dan jangkau komunitas dengan bergabung bersama Grup Belajar kami.</p>
+        <a href="https://chat.whatsapp.com/IZw5MhQuQJY0XPYKcvRxSt">Grup Class Coder</a>
       </div><!-- az-content-body -->
     </div><!-- container -->
   </div><!-- az-content -->

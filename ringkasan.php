@@ -28,12 +28,12 @@ $_SESSION['page-url'] = "ringkasan";
   <?php }
   require_once("resources/layout/navbar.php"); ?>
 
-  <div class="az-content pd-y-20 pd-lg-y-30 pd-xl-y-40" style="background: #cbdcf7;">
+  <div class="az-content pd-y-20 pd-lg-y-30 pd-xl-y-40" style="background: #cbdcf7;height: 100vh;">
     <div class="container">
       <div class="az-content-left az-content-left-components">
         <div class="component-item">
           <label>Docs</label>
-          <?php require_once("resources/layout/nav-pengantar.php"); ?>
+          <?php require_once("resources/layout/nav-docs.php"); ?>
         </div><!-- component-item -->
 
       </div><!-- az-content-left -->
@@ -43,9 +43,12 @@ $_SESSION['page-url'] = "ringkasan";
           <span>Ringkasan</span>
         </div>
         <h2 class="az-content-title">Ringkasan</h2>
-
-        <div class="az-content-label mg-b-5">Form Input &amp; Textarea</div>
-        <p class="mg-b-20">A basic form control input and textarea with disabled and readonly mode.</p>
+        <h4>Netmedia Framecode</h4>
+        <p>Netmedia Framecode adalah layanan pembuatan website yang dibuat dengan tujuan membantu UKM (Usaha Kecil Menengah) dalam melakukan digitalisasi. Kami berupaya melakukan perubahan dari sistem konvensional ke sistem digital sebagai bentuk peningkatan efektivitas dan efisiensi proses dan operasional bisnis UMKM. Dengan digitalisasi UMKM, pelaku usaha UMKM mengubah manajemen usahanya dari praktik konvensional menjadi modern.</p>
+        <p>Kami berkomitmen untuk menciptakan peluang bisnis yang lebih luas bagi UMKM untuk Go Global dengan digitalisasi.</p>
+        <h4>GUI - Netmedia Framecode</h4>
+        <p>Kelola project kamu dengan Dashboard XAMPP yang telah kami desain ulang menjadi lebih kompleks dan didukung dengan aksesibilitas yang dapat mengontrol semua lembar kerja project kamu.</p>
+        <p>GUI dari Netmedia Framecode dibuat bertujuan untuk membantu programmer pemula agar dapat membuat sebuah aplikasi basic yang terstruktur dan dapat dengan mudah dipelajari. Mengapa mudah? itu karena kami menggunakan konsep prosedural dengan program pure Native agar pemula dapat memahami setiap baris code yang ada.</p>
       </div><!-- az-content-body -->
     </div><!-- container -->
   </div><!-- az-content -->

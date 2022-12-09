@@ -23,8 +23,6 @@
             <a style="cursor: pointer;" onclick="window.location.href='pengantar'" class="nav-link">Pengantar</a>
             <a style="cursor: pointer;" onclick="window.location.href='ringkasan'" href="ringkasan" class="nav-link">Ringkasan</a>
             <a style="cursor: pointer;" onclick="window.location.href='php-info'" class="nav-link">PHP Info</a>
-            <a style="cursor: pointer;" onclick="window.location.href='sumber-daya'" class="nav-link">Sumber Daya</a>
-            <a style="cursor: pointer;" onclick="window.location.href='direktori'" class="nav-link">Direktori</a>
           </nav>
         </li>
         <li class="nav-item <?php if ($_SESSION['page-name'] == "Display") {
@@ -32,8 +30,10 @@
                             } ?>">
           <a style="cursor: pointer;" onclick="window.location.href='display'" class="nav-link"><i class="typcn typcn-th-large-outline"></i> Display</a>
         </li>
-        <li class="nav-item">
-          <a style="cursor: pointer;" onclick="window.open('/phpmyadmin/','blank')" class="nav-link" target="_blank"><i class="typcn typcn-puzzle-outline"></i> phpMyAdmin</a>
+        <li class="nav-item <?php if ($_SESSION['page-name'] == "phpMyAdmin") {
+                              echo "active show";
+                            } ?>">
+          <a style="cursor: pointer;" onclick="window.open('/phpmyadmin/', 'blank')" class="nav-link"><i class="typcn typcn-puzzle-outline"></i> phpMyAdmin</a>
         </li>
       </ul>
     </div>

@@ -31,8 +31,8 @@ $_SESSION['page-url'] = "signup";
       <div>
         <img src="../resources/img/netmedia-framecode.png" style="width: 100px" alt="Icon Brand">
         <h1>Netmedia Framecode</h1>
-        <p>Netmedia Framecode is a website creation service that was created with the aim of helping UKM (Small and Medium Enterprises) in digitizing. We strive to make changes from conventional to digital systems as a form of increasing the effectiveness and efficiency of UMKM business processes and operations. With the digitization of UMKM, UMKM business actors change their business management from conventional to modern practices.</p>
-        <p>We are committed to creating wider business opportunities for UMKM to Go Global with digitalization.</p>
+        <p>Netmedia Framecode adalah layanan pembuatan website yang dibuat dengan tujuan membantu UKM (Usaha Kecil Menengah) dalam melakukan digitalisasi. Kami berupaya melakukan perubahan dari sistem konvensional ke sistem digital sebagai bentuk peningkatan efektivitas dan efisiensi proses dan operasional bisnis UMKM. Dengan digitalisasi UMKM, pelaku usaha UMKM mengubah manajemen usahanya dari praktik konvensional menjadi modern.</p>
+        <p>Kami berkomitmen untuk menciptakan peluang bisnis yang lebih luas bagi UMKM untuk Go Global dengan digitalisasi.</p>
         <span>Salam hangat,</span><br>
         <span>Sahala Z.R Butar Butar</span><br>
         <span>Founder Netmedia Framecode</span><br><br><br>
