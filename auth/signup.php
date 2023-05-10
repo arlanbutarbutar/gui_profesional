@@ -1,5 +1,5 @@
 <?php require_once("../controller/script.php");
-if (isset($_SESSION['data-user'])) {
+if (isset($_SESSION['data-gui'])) {
   header("Location: ../route.php");
   exit;
 }

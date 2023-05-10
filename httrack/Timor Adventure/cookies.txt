@@ -1,0 +1,11 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.timoradventures.com.au	TRUE	/	FALSE	1999999999	PHPSESSID	6635cf06a787acc9a5e4df2d4d4bc2d7
+www.timoradventures.com.au	TRUE	/	FALSE	1999999999	cb6b5495b21b91e3d6dc507f771fd694	3b9bc8c66a52e335e0d1d7b78271c586
+www.timoradventures.com.au	TRUE	/	FALSE	1999999999	ckon2301	sject2301_9bf9e13682c36
+www.tripadvisor.com.au	TRUE	/	FALSE	1999999999	TADCID	_cDPV11iXTIepneWABQCFdpBzzOuRA-9xvCxaMyI13LeTHkfMnpmYks2z_Nxfs3t2w_pQAaAesJFgLiTF6FoD3dPYfWBTRBTHwc
+.tripadvisor.com.au	TRUE	/	FALSE	1999999999	TAUnique	%1%enc%3ATT0OJjZFfNah2zf5T%2FRFTJaqwcPi7UGfpsvYKZPmXbXjbY8WRXQpkg%3D%3D
+.tripadvisor.com.au	TRUE	/	FALSE	1999999999	TASession	V2ID.72D0DDE5D17B63C8336B68A8BD3B9B94*SQ.1*HS.recommended*ES.popularity*DS.5*SAS.popularity*FPS.oldFirst*FA.1*TRA.true
+.tripadvisor.com.au	TRUE	/	FALSE	1999999999	ServerPool	X
+.tripadvisor.com.au	TRUE	/	FALSE	1999999999	TACds	A.1.11900.2.2023-01-13
+

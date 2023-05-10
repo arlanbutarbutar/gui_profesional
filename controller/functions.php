@@ -1,7 +1,7 @@
 <?php if (!isset($_SESSION)) {
   session_start();
 }
-if (!isset($_SESSION['data-user'])) {
+if (!isset($_SESSION['data-gui'])) {
   function createUserAdmin($data)
   {
     global $conn;
@@ -44,7 +44,7 @@ if (!isset($_SESSION['data-user'])) {
         return false;
       } else if ($row['id_status'] == 1) {
         if (password_verify($password, $row['password'])) {
-          $_SESSION['data-user'] = [
+          $_SESSION['data-gui'] = [
             'id' => $row['id_user'],
             'name' => $row['username'],
             'mail' => $row['email'],
@@ -61,7 +61,7 @@ if (!isset($_SESSION['data-user'])) {
   }
   // function __($data){global $conn;}
 }
-if (isset($_SESSION['data-user']) && $_SESSION['data-user'] != "") {
+if (isset($_SESSION['data-gui']) && $_SESSION['data-gui'] != "") {
   function addMenuNavbar($data)
   {
     global $conn, $idUser;

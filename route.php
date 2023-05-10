@@ -15,11 +15,11 @@ $conn_check = mysqli_connect($servername, $username, $password, $database);
 if (!$conn_check) {
   error_log('Connection error: ' . mysqli_connect_error());
 }
-if (!isset($_SESSION['data-user'])) {
+if (!isset($_SESSION['data-gui'])) {
   header('Location: ' . $uri . '/auth/signin');
   exit();
 }
-if (isset($_SESSION['data-user'])) {
+if (isset($_SESSION['data-gui'])) {
   header('Location: ' . $uri . '/');
   exit();
 }

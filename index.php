@@ -1,5 +1,5 @@
 <?php require_once("controller/script.php");
-if (!isset($_SESSION['data-user'])) {
+if (!isset($_SESSION['data-gui'])) {
   header("Location: route.php");
   exit;
 }
@@ -41,7 +41,7 @@ $_SESSION['page-url'] = "./";
             <div class="media">
               <div class="media-body">
                 <label>Start Date</label>
-                <h6><?php $dateRegis = $_SESSION['data-user']['date'];
+                <h6><?php $dateRegis = $_SESSION['data-gui']['date'];
                     $dateRegis = date_create($dateRegis);
                     echo date_format($dateRegis, "M d, Y") ?></h6>
               </div>
@@ -186,7 +186,7 @@ $_SESSION['page-url'] = "./";
               </div>
               <?php if (mysqli_num_rows($menuNavbar) > 0) {
                 while ($row = mysqli_fetch_assoc($menuNavbar)) { ?>
-                  <a class="btn btn-outline-primary border-0" style="border-top-left-radius: 10px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;" href="<?= $row['url'] ?>" target="_blank"><?= $row['menu_navbar'] ?></a>
+                  <a class="btn btn-outline-primary border-0" style="border-top-left-radius: 10px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;white-space: nowrap;" href="<?= $row['url'] ?>" target="_blank"><?= $row['menu_navbar'] ?></a>
                   <span class="text-danger ml-n2 mr-2" style="font-size: 12px;cursor: pointer;" data-toggle="modal" data-target="#hapus-menu<?= $row['id_menu_navbar'] ?>"><i class="fas fa-trash"></i></span>
                   <div class="modal fade" id="hapus-menu<?= $row['id_menu_navbar'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -281,22 +281,6 @@ $_SESSION['page-url'] = "./";
                   } ?>
                 </div>
               </div>
-              <div class="card border-0 shadow mt-3" style="background-color: #e5eefb;">
-                <div class="card-header">
-                  <h6 class="card-title">Databases from Project</h6>
-                  <p class="card-text">Menampilkan semua database dari Project.</p>
-                </div>
-                <div class="card-body">
-                  <?php if (mysqli_num_rows($view_db) == 0) { ?>
-                    Records: <?= mysqli_num_rows($view_db); ?><br>
-                  <?php } else if (mysqli_num_rows($view_db) > 0) { ?>
-                    Records: <?= mysqli_num_rows($view_db); ?><br>
-                    <?php while ($row = mysqli_fetch_assoc($view_db)) { ?>
-                      <a href='/phpmyadmin/index.php?route=/database/structure&server=1&db=<?= $row['name'] ?>' target='_blank'><i class='fas fa-database mr-2 text-success'></i></a><?= $row['name'] ?><br>
-                  <?php }
-                  } ?>
-                </div>
-              </div>
             <?php } ?>
 
           </div>
@@ -313,7 +297,7 @@ $_SESSION['page-url'] = "./";
                           <h3>GUI <small class="tx-danger" style="font-size: 14px;"><i class="icon ion-md-arrow-down"></i> 27.1</small></h3>
                         </div>
                         <div class="card-body">
-                          <p>Halo <?= $_SESSION['data-user']['name'] ?>, kami mendeteksi GUI versi lama di server local kamu, jika <?= $_SESSION['data-user']['name'] ?> mau menyalin projek dari GUI yang lama bisa kok. Tekan tombol salin di bawah ini yah...</p>
+                          <p>Halo <?= $_SESSION['data-gui']['name'] ?>, kami mendeteksi GUI versi lama di server local kamu, jika <?= $_SESSION['data-gui']['name'] ?> mau menyalin projek dari GUI yang lama bisa kok. Tekan tombol salin di bawah ini yah...</p>
                           <p>Perhatian!! untuk database dan folder atau repository Project tidak dapat disalin dan hanya data yang telah tersimpan di database GUI saja yang dapat disalin.</p>
                           <form action="" method="post">
                             <button type="submit" name="copy-gui-old" class="btn btn-primary"><i class="fas fa-file-import"></i> Salin sekarang</button>
@@ -355,18 +339,16 @@ $_SESSION['page-url'] = "./";
                     <div class="card card-body border-0 shadow text-dark text-center" style="background-color: #e5eefb;">
                       <img src="resources/img/wordpress.png" alt="Logo Framework" style="width: 75px" class="m-auto">
                       <h3>WordPress</h3>
-                      <?php if ($stmt = $conn->query("SHOW DATABASES")) {
-                        $row = $stmt->fetch_assoc();
-                        if ($row['Database'] != 'db_wordpress') { ?>
-                          <form action="" method="POST">
-                            <button type="submit" name="db-wordpress" class="btn btn-primary btn-sm shadow">Create</button>
-                          </form>
-                        <?php } else { ?>
-                          <div class="d-flex justify-content-center flex-nowrap">
-                            <a href="https://developer.wordpress.com/docs/" target="_blank" class="btn btn-primary btn-sm shadow">Documentation</a>
-                          </div>
-                      <?php }
-                      } ?>
+                      <?php $stmt_wordpress = mysqli_query($conn, "SELECT name FROM data_base WHERE name='db_wordpress'");
+                      if (mysqli_num_rows($stmt_wordpress) == 0) { ?>
+                        <form action="" method="POST">
+                          <button type="submit" name="db-wordpress" class="btn btn-primary btn-sm shadow">Create</button>
+                        </form>
+                      <?php } else if (mysqli_num_rows($stmt_wordpress) > 0) { ?>
+                        <div class="d-flex justify-content-center flex-nowrap">
+                          <a href="https://developer.wordpress.com/docs/" target="_blank" class="btn btn-primary btn-sm shadow">Documentation</a>
+                        </div>
+                      <?php } ?>
                     </div>
                   </a>
                 </div>
@@ -557,15 +539,14 @@ $_SESSION['page-url'] = "./";
                                                   </div>
                                                   <div class="form-group">
                                                     <label for="github">Github</label>
-                                                    <input type="text" name="github" id="github" value="<?= $row['github'] ?>" class="form-control text-center border-0 shadow mb-2" required>
+                                                    <input type="text" name="github" id="github" value="<?= $row['github'] ?>" class="form-control text-center border-0 shadow mb-2">
                                                   </div>
                                                   <div class="form-group">
                                                     <label for="status">Status</label>
                                                     <select name="status" id="status" class="form-control text-center border-0 shadow" required>
-                                                      <option value="">Pilih Status</option>
+                                                      <option value="3">No Encryption</option>
                                                       <option value="1">Encryption</option>
                                                       <option value="2">Private</option>
-                                                      <option value="3">No Encryption</option>
                                                     </select>
                                                   </div>
                                                   <div class="form-group">

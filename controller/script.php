@@ -25,7 +25,7 @@ if (isset($_SESSION['time-message'])) {
     unset($_SESSION['time-alert']);
   }
 }
-if (!isset($_SESSION['data-user'])) {
+if (!isset($_SESSION['data-gui'])) {
   if (isset($_POST['masuk'])) {
     if (entryUserAdmin($_POST) > 0) {
       header("Location: ../route.php");
@@ -41,10 +41,10 @@ if (!isset($_SESSION['data-user'])) {
     }
   }
 }
-if (isset($_SESSION['data-user'])) {
-  $idUser = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-user']['id']))));
-  $nameServer = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-user']['name']))));
-  $mailServer = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-user']['mail']))));
+if (isset($_SESSION['data-gui'])) {
+  $idUser = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-gui']['id']))));
+  $nameServer = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-gui']['name']))));
+  $mailServer = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-gui']['mail']))));
 
   $jenis_app = mysqli_query($conn, "SELECT * FROM jenis_app");
   $lang = mysqli_query($conn, "SELECT * FROM languages");

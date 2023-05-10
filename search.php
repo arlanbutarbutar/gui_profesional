@@ -34,7 +34,26 @@ if ($_SESSION['page-url'] == "./") {
           <p><?= $row['github'] ?></p>
           <small><?= $row['status'] ?></small>
         </td>
-        <td class="text-center"></td>
+        <td class="text-center">
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#des<?= $row['id_project'] ?>">
+            <i class="fas fa-eye"></i> View
+          </button>
+          <div class="modal fade" id="des<?= $row['id_project'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header border-bottom-0 shadow">
+                  <h5 class="modal-title" id="exampleModalLabel">Deskripsi <?= $row['name'] ?></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <textarea class="form-control border-0 bg-transparent" cols="30" rows="10" readonly><?= $row['description'] ?></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
         <td class="text-center"><?= $row['route'] ?></td>
         <td class="text-center"><a href="http://<?= $row['domain'] ?>" target="_blank"><?= $row['domain'] ?></a></td>
         <td class="text-center">
@@ -68,11 +87,30 @@ if ($_SESSION['page-url'] == "./") {
                                           echo "bg-warning";
                                         } else if ($row['progress'] == 100) {
                                           echo "bg-success";
-                                        } ?> wd-25p" role="progressbar" aria-valuenow="<?= $row['progress'] ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                        } ?> wd-<?= $row['progress'] ?>p" role="progressbar" aria-valuenow="<?= $row['progress'] ?>" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
         </td>
-        <td class="text-center"></td>
+        <td class="text-center">
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#more<?= $row['id_project'] ?>">
+            <i class="fas fa-eye"></i> View
+          </button>
+          <div class="modal fade" id="more<?= $row['id_project'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header border-bottom-0 shadow">
+                  <h5 class="modal-title" id="exampleModalLabel">Lainnya dari <?= $row['name'] ?></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <textarea class="form-control border-0 bg-transparent" cols="30" rows="10" readonly><?= $row['more'] ?></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
         <td><?php $tgl_buat = date_create($row['created_at']);
             echo date_format($tgl_buat, 'l, d M Y'); ?></td>
         <td><?php $tgl_ubah = date_create($row['updated_at']);
@@ -94,17 +132,57 @@ if ($_SESSION['page-url'] == "./") {
                       <div class="modal-body text-center">
                         <div class="form-group">
                           <label for="name">Nama projek</label>
-                          <input type="text" name="name" value="<?= $row['name'] ?>" class="form-control text-center border-0 shadow" placeholder="Nama projek" style="border-radius: 10px;" required>
+                          <input type="text" name="name" value="<?= $row['name'] ?>" class="form-control text-center border-0 shadow" required>
                         </div>
                         <div class="form-group">
-                          <label for="route">Rute</label>
-                          <input type="text" name="route" value="<?= $row['route'] ?>" class="form-control text-center border-0 shadow mb-2" placeholder="Rute" style="border-radius: 10px;" required>
-                          <span>Rute yang tersedia seperti berikut => <small class="text-success">'apps/dir_projek/'</small></span>
+                          <label for="pemilik">Nama klien</label>
+                          <input type="text" name="pemilik" id="pemilik" value="<?= $row['pemilik'] ?>" class="form-control text-center border-0 shadow mb-2" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="jenis-app">Jenis App</label>
+                          <select name="jenis-app" class="form-control border-0 shadow select2-no-search select2-hidden-accessible" data-select2-id="13" tabindex="-1" aria-hidden="true" required>
+                            <option label="Pilih Jenis App" value=""></option>
+                            <?php foreach ($jenis_app as $row_ja) : ?>
+                              <option value="<?= $row_ja['id_jenis_app'] ?>"><?= $row_ja['jenis_app'] ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="language">Bahasa</label>
+                          <select name="language" class="form-control border-0 shadow select2-no-search select2-hidden-accessible" data-select2-id="13" tabindex="-1" aria-hidden="true" required>
+                            <option label="Pilih Bahasa" value=""></option>
+                            <?php foreach ($lang as $row_ja) : ?>
+                              <option value="<?= $row_ja['id_language'] ?>"><?= $row_ja['language'] ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="github">Github</label>
+                          <input type="text" name="github" id="github" value="<?= $row['github'] ?>" class="form-control text-center border-0 shadow mb-2">
+                        </div>
+                        <div class="form-group">
+                          <label for="status">Status</label>
+                          <select name="status" id="status" class="form-control text-center border-0 shadow" required>
+                            <option value="3">No Encryption</option>
+                            <option value="1">Encryption</option>
+                            <option value="2">Private</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="route">Rute Directory</label>
+                          <div class="row">
+                            <div class="col-lg-2">
+                              <input value="apps/" class="form-control text-center border-0 mb-2 pr-0" style="background-color: #fff;" readonly>
+                            </div>
+                            <div class="col-lg-10">
+                              <input type="text" name="route" id="route" value="<?= str_replace("apps/", "", $row['route']) ?>" class="form-control text-center border-0 shadow mb-2" required>
+                            </div>
+                          </div>
+                          <span>Rute yang tersedia seperti berikut => <small class="text-success">'apps/directory-project/'</small></span>
                         </div>
                         <div class="form-group">
                           <label for="progress">Progress</label>
                           <select name="progress" id="progress" class="form-control text-center border-0 shadow">
-                            <option value="">Pilih Progress</option>
                             <option value="0">Baru</option>
                             <option value="5">Cek App</option>
                             <option value="15">Perancangan DB</option>
@@ -118,17 +196,24 @@ if ($_SESSION['page-url'] == "./") {
                         </div>
                         <div class="form-group">
                           <label for="domain">Domain</label>
-                          <input type="text" name="domain" value="<?= $row['domain'] ?>" class="form-control text-center border-0 shadow" placeholder="Domain">
+                          <input type="text" name="domain" id="domain" value="<?= $row['domain'] ?>" class="form-control text-center border-0 shadow mb-2">
+                        </div>
+                        <div class="form-group">
+                          <label for="deskripsi">Deskripsi</label>
+                          <textarea name="deskripsi" rows="3" class="form-control border-0 shadow"><?= $row['description'] ?></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="more">Lainnya</label>
+                          <textarea name="more" rows="3" class="form-control border-0 shadow"><?= $row['more'] ?></textarea>
                         </div>
                       </div>
                       <div class="modal-footer border-top-0 justify-content-center">
                         <input type="hidden" name="id-project" value="<?= $row['id_project'] ?>">
                         <input type="hidden" name="nameOld" value="<?= $row['name'] ?>">
                         <input type="hidden" name="routeOld" value="<?= $row['route'] ?>">
-                        <input type="hidden" name="domainOld" value="<?= $row['domain'] ?>">
                         <input type="hidden" name="progressOld" value="<?= $row['progress'] ?>">
-                        <button type="button" class="btn btn-white btn-sm shadow" style="border-radius: 10px;" data-dismiss="modal">Batal</button>
-                        <button type="submit" name="edit-project" class="btn btn-warning btn-sm shadow" style="border-radius: 10px;"><i class="fas fa-pen text-dark"></i> Ubah</button>
+                        <button type="button" class="btn btn-white btn-sm shadow" data-dismiss="modal">Batal</button>
+                        <button type="submit" name="edit-project" class="btn btn-warning btn-sm shadow"><i class="fas fa-pen text-dark"></i> Ubah</button>
                       </div>
                     </form>
                   </div>
@@ -165,7 +250,7 @@ if ($_SESSION['page-url'] == "./") {
           </div>
         </td>
         <td>
-          <a style="cursor: pointer;" onclick="window.open('<?= $row['route'] ?>', '_blank')" class="btn btn-success btn-sm shadow ml-2" target="_blank"><i class="fas fa-eye"></i> View</a>
+          <a style="cursor: pointer;" onclick="window.open('<?= $row['route'] ?>', '_blank')" class="btn btn-success btn-sm shadow ml-2"><i class="fas fa-eye"></i> View</a>
         </td>
       </tr>
 <?php }

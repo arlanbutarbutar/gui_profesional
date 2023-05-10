@@ -1,5 +1,5 @@
 <?php require_once("controller/script.php");
-if (!isset($_SESSION['data-user'])) {
+if (!isset($_SESSION['data-gui'])) {
   header("Location: route.php");
   exit;
 }
@@ -8,11 +8,11 @@ $_SESSION['page-url'] = "export-excel";
 $projects = mysqli_query($conn, "SELECT * FROM projects JOIN jenis_app ON projects.id_jenis_app=jenis_app.id_jenis_app JOIN languages ON projects.id_language=languages.id_language JOIN project_status ON projects.id_status=project_status.id_status WHERE projects.id_user='$idUser' ORDER BY projects.id_project DESC");
 $date = date("d M Y");
 header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=Data Project " . $_SESSION['data-user']['name'] . " (" . $date . ").xls");
+header("Content-Disposition: attachment; filename=Data Project " . $_SESSION['data-gui']['name'] . " (" . $date . ").xls");
 ?>
 
 <center>
-  <h3>Data Project <?= $_SESSION['data-user']['name'] ?></h3>
+  <h3>Data Project <?= $_SESSION['data-gui']['name'] ?></h3>
 </center>
 <table border="1">
   <thead>
