@@ -1,8 +1,8 @@
 <?php require_once("../controller/script.php");
 if (!empty($_POST['password'])) {
-  $en = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['en']))));
-  $eu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['eu']))));
-  $password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['password']))));
+  $en = valid($_POST['en']);
+  $eu = valid($_POST['eu']);
+  $password = valid($_POST['password']);
 
   // check account
   $result = mysqli_query($conn, "SELECT * FROM users WHERE en_user = '$eu'");

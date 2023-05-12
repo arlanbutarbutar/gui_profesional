@@ -6,8 +6,8 @@ $_SESSION['page-url'] = "password-reset";
 
 // check method $_GET from url
 if (isset($_GET['en']) && isset($_GET['eu'])) {
-  $en = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_GET['en']))));
-  $eu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_GET['eu']))));
+  $en = valid($_GET['en']);
+  $eu = valid($_GET['eu']);
   $result = mysqli_query($conn, "SELECT * FROM users WHERE en_user = '$eu'");
   if (mysqli_num_rows($result) == 0) {
     header("Location: signin");

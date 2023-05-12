@@ -27,7 +27,7 @@ if (isset($_SESSION['time-message'])) {
 }
 
 if (isset($_SESSION['data-user'])) {
-  $idUser = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-user']['id']))));
+  $idUser = valid($_SESSION['data-user']['id']);
 
   // proccess edit data Users to db
   if (isset($_POST['profile-details'])) {

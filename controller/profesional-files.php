@@ -183,7 +183,7 @@ $file5 = "password-reset-method.php";
 $file5 = fopen($route . '/auth/' . $file5, "w");
 fwrite($file5, '<?php require_once("../controller/script.php");
 if (!empty($_POST["email"])) {
-  $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST["email"]))));
+  $email = valid($_POST["email"]);
   $account_check = mysqli_query($conn, "SELECT * FROM users WHERE email=' . $petik . '$email' . $petik . '");
   if (mysqli_num_rows($account_check) > 0) {
     $account = mysqli_fetch_assoc($account_check);
@@ -499,9 +499,9 @@ $file7 = fopen($route . '/auth/' . $file7, "w");
 fwrite($file7, '<?php
 require_once("../controller/script.php");
 if (!empty($_POST["email"])) {
-  $username = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST["username"]))));
-  $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST["email"]))));
-  $password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST["password"]))));
+  $username = valid($_POST["username"]);
+  $email = valid($_POST["email"]);
+  $password = valid($_POST["password"]);
   $password = password_hash($password, PASSWORD_DEFAULT);
 
   // check if email already exists
@@ -859,8 +859,8 @@ $_SESSION["page-name"] = "Account Verification";
 $_SESSION["page-url"] = "verification";
 
 if(isset($_GET["en"])){
-  $en=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_GET["en"]))));
-  $eu=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_GET["eu"]))));
+  $en=valid($_GET["en"]);
+  $eu=valid($_GET["eu"]);
   $result = mysqli_query($conn, "SELECT * FROM users WHERE en_user=' . $petik . '$eu' . $petik . '");
   if(mysqli_num_rows($result)>0){
     $row = mysqli_fetch_assoc($result);
@@ -1116,9 +1116,9 @@ $file14 = fopen($route . '/views/' . $file14, "w");
 fwrite($file14, '<?php
 require_once("../controller/script.php");
 if (!empty($_POST["emailaddress"])) {
-  $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST["emailaddress"]))));
-  $confirmemailpassword = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST["confirmemailpassword"]))));
-  $id = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION["data-user"]["id"]))));
+  $email = valid($_POST["emailaddress"]);
+  $confirmemailpassword = valid($_POST["confirmemailpassword"]);
+  $id = valid($_SESSION["data-user"]["id"]);
 
   // check if email already exists
   $result = mysqli_query($conn, "SELECT * FROM users WHERE email=' . $petik . '$email' . $petik . '");

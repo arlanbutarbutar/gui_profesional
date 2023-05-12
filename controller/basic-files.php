@@ -226,12 +226,19 @@ fclose($file5);
 $file6 = "functions.php";
 $file6 = fopen($route . '/controller/' . $file6, "w");
 fwrite($file6, '<?php
+function valid($value)
+{
+  global $conn;
+  $valid = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $value))));
+  return $valid;
+}
+
 if (!isset($_SESSION["data-user"])) {
   function masuk($data)
   {
     global $conn;
-    $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["email"]))));
-    $password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["password"]))));
+    $email = valid($data["email"]);
+    $password = valid($data["password"]);
 
     // check account
     $checkAccount = mysqli_query($conn, "SELECT * FROM users WHERE email=' . $petik . '$email' . $petik . '");
@@ -260,8 +267,8 @@ if (isset($_SESSION["data-user"])) {
   function edit_profile($data)
   {
     global $conn, $idUser;
-    $username = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["username"]))));
-    $password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["password"]))));
+    $username = valid($data["username"]);
+    $password = valid($data["password"]);
     $password = password_hash($password, PASSWORD_DEFAULT);
     mysqli_query($conn, "UPDATE users SET username=' . $petik . '$username' . $petik . ', password=' . $petik . '$password' . $petik . ' WHERE id_user=' . $petik . '$idUser' . $petik . '");
     return mysqli_affected_rows($conn);
@@ -269,15 +276,15 @@ if (isset($_SESSION["data-user"])) {
   function add_user($data)
   {
     global $conn;
-    $username = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["username"]))));
-    $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["email"]))));
+    $username = valid($data["username"]);
+    $email = valid($data["email"]);
     $checkEmail = mysqli_query($conn, "SELECT * FROM users WHERE email=' . $petik . '$email' . $petik . '");
     if (mysqli_num_rows($checkEmail) > 0) {
       $_SESSION["message-danger"] = "Maaf, email yang anda masukan sudah terdaftar.";
       $_SESSION["time-message"] = time();
       return false;
     }
-    $password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["password"]))));
+    $password = valid($data["password"]);
     $password = password_hash($password, PASSWORD_DEFAULT);
     mysqli_query($conn, "INSERT INTO users(username,email,password) VALUES(' . $petik . '$username' . $petik . ',' . $petik . '$email' . $petik . ',' . $petik . '$password' . $petik . ')");
     return mysqli_affected_rows($conn);
@@ -285,10 +292,10 @@ if (isset($_SESSION["data-user"])) {
   function edit_user($data)
   {
     global $conn, $time;
-    $id_user = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["id-user"]))));
-    $username = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["username"]))));
-    $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["email"]))));
-    $emailOld = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["emailOld"]))));
+    $id_user = valid($data["id-user"]);
+    $username = valid($data["username"]);
+    $email = valid($data["email"]);
+    $emailOld = valid($data["emailOld"]);
     if ($email != $emailOld) {
       $checkEmail = mysqli_query($conn, "SELECT * FROM users WHERE email=' . $petik . '$email' . $petik . '");
       if (mysqli_num_rows($checkEmail) > 0) {
@@ -304,7 +311,7 @@ if (isset($_SESSION["data-user"])) {
   function delete_user($data)
   {
     global $conn;
-    $id_user = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data["id-user"]))));
+    $id_user = valid($data["id-user"]);
     mysqli_query($conn, "DELETE FROM users WHERE id_user=' . $petik . '$id_user' . $petik . '");
     return mysqli_affected_rows($conn);
   }
@@ -367,7 +374,7 @@ if (!isset($_SESSION["data-user"])) {
 }
 
 if (isset($_SESSION["data-user"])) {
-  $idUser = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION["data-user"]["id"]))));
+  $idUser = valid($_SESSION["data-user"]["id"]);
   
   $profile = mysqli_query($conn, "SELECT * FROM users WHERE id_user=' . $petik . '$idUser' . $petik . '");
   if (isset($_POST["ubah-profile"])) {

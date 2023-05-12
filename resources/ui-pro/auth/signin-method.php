@@ -1,7 +1,7 @@
 <?php require_once("../controller/script.php");
 if (!empty($_POST['email'])) {
-  $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['email']))));
-  $password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['password']))));
+  $email = valid($_POST['email']);
+  $password = valid($_POST['password']);
   $account_check = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
   if (mysqli_num_rows($account_check) > 0) {
     $row = mysqli_fetch_assoc($account_check);

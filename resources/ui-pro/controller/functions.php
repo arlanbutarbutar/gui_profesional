@@ -1,6 +1,12 @@
 <?php if (!isset($_SESSION)) {
   session_start();
 }
+function valid($value)
+{
+  global $conn;
+  $valid = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $value))));
+  return $valid;
+}
 if (isset($_SESSION['data-user'])) {
 
   function imgBB($image, $name = null)
@@ -27,7 +33,7 @@ if (isset($_SESSION['data-user'])) {
   function profileDetails($data)
   {
     global $conn, $idUser;
-    $name = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['name']))));
+    $name = valid($data['name']);
     if (!empty($_FILES['avatar'])) {
       $namaFile = $_FILES["avatar"]["name"];
       $encrypt = crc32($namaFile);
@@ -46,8 +52,8 @@ if (isset($_SESSION['data-user'])) {
   function editRole($data)
   {
     global $conn;
-    $id_user = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id-user']))));
-    $id_role = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['user-role']))));
+    $id_user = valid($data['id-user']);
+    $id_role = valid($_POST['user-role']);
     mysqli_query($conn, "UPDATE users SET id_role='$id_role' WHERE id_user='$id_user'");
     return mysqli_affected_rows($conn);
   }
