@@ -17,4 +17,5 @@ Cara instalasi:
 2. Klik button Code warna hijau/biru
 3. Bisa clone menggunakan HTTPS atau SSH atau bisa juga Download ZIP
 4. Masuk ke folder htdocs lalu hapus semuanya dan setelah itu taruh yang sudah di unduh ke dalam htdocs. Perlu diingat pastikan backup file project di dalam htdocs jika ada!
-5. Buka link http://localhost/ dan lakukan konfigurasi lalu selesai.)
+5. Pastikan semua file dan folder berada di bawah folder htdocs. contoh xampp/htdocs/apps/ atau xampp/htdocs/controller
+6. Buka link http://localhost/ dan lakukan konfigurasi lalu selesai.
