@@ -2,9 +2,6 @@
 GUI - Netmedia Framecode
 ](https://github.com/arlanbutarbutar/gui_profesional
 
-Halo pak, saya mau bagi GUI dari kita, baru saja di update lagi.
-GUI ini dapat membantu programmer pemula untuk membuat sebuah aplikasi yang sudah jadi template dan tinggal melanjutkan.
-
 Fitur-fitur:
 1. Bisa menambah menu-menu di navbarnya
 2. Bisa export data project yang sudah dikerjakan dalam bentuk excel dan dijadikan laporan kerja
