@@ -222,17 +222,44 @@ if ($conn->connect_error) {
 ');
 fclose($file5);
 
-// file /controller/functions.php
-$file6 = "functions.php";
-$file6 = fopen($route . '/controller/' . $file6, "w");
-fwrite($file6, '<?php
+// file /controller/support_code.php
+$file5 = "support_code.php";
+$file5 = fopen($route . '/controller/' . $file5, "w");
+fwrite($file5, '<?php
 function valid($value)
 {
   global $conn;
   $valid = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $value))));
   return $valid;
 }
+function separateAlphaNumeric($string)
+{
+  $alpha = "";
+  $numeric = "";
+  // Mengiterasi setiap karakter dalam string
+  for ($i = 0; $i < strlen($string); $i++) {
+    // Memeriksa apakah karakter adalah huruf
+    if (ctype_alpha($string[$i])) {
+      $alpha .= $string[$i];
+    }
+    // Memeriksa apakah karakter adalah angka
+    if (ctype_digit($string[$i])) {
+      $numeric .= $string[$i];
+    }
+  }
+  // Mengembalikan array yang berisi huruf dan angka terpisah
+  return array(
+    "alpha" => $alpha,
+    "numeric" => $numeric
+  );
+}
+');
+fclose($file5);
 
+// file /controller/functions.php
+$file6 = "functions.php";
+$file6 = fopen($route . '/controller/' . $file6, "w");
+fwrite($file6, '<?php require_once("support_code.php");
 if (!isset($_SESSION["data-user"])) {
   function masuk($data)
   {
