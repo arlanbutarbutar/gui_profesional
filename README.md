@@ -45,7 +45,3 @@ Jika pemasangan menggunakan **HTTPS** atau **SSH** terlalu sulit bagi anda, bisa
 Ikuti terus perkembangan GUI dan jangkau komunitas dengan bergabung bersama Grup Belajar kami.
 
 [Grup Class Coder](https://chat.whatsapp.com/IZw5MhQuQJY0XPYKcvRxSt)
-
----
-
-Now the script has been converted into a format that can be read in a GitHub README. You can copy and paste the converted script into your GitHub repository's README file.
